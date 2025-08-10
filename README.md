@@ -1,41 +1,46 @@
-Zero-Day Attack Detection on Logistics Network
-📌 Project Overview
-This repository contains the Zero-Day Attack Detection system developed as part of the ITC6000 – Database Management Systems course. The project focuses on detecting and analyzing cyber threats within airport logistics networks using SQLite and structured database design.
+# Zero-Day Attack Detection on Logistics Network  
 
-The system models real-world scenarios for Security Analysts, IT Administrators, Logistics Managers, and Compliance Officers to monitor, detect, and respond to anomalies in real time.
+## 📌 Project Overview  
+This repository contains the **Zero-Day Attack Detection** system developed as part of the *ITC6000 – Database Management Systems* course.  
+The project focuses on detecting and analyzing cyber threats within airport logistics networks using **SQLite** and structured database design.  
 
-📂 Repository Contents
-ITC6000-2024-FALL-A -JAYESH -Zero Day Attack Detection.pdf
-Detailed final project report including system architecture, ER modeling, SQL queries, analytics, security considerations, and future improvements.
+The system models real-world scenarios for **Security Analysts**, **IT Administrators**, **Logistics Managers**, and **Compliance Officers** to monitor, detect, and respond to anomalies in real time.  
 
-Jayesh_Final Project.sqbpro (SQLite Project File)
-Complete SQLite database implementation with schema, sample data, and queries for threat detection and analysis.
+---
 
-ERD_Jayesh_Final Project_Airport Network Threat.drawio
-Entity-Relationship Diagram illustrating database tables, attributes, and relationships.
+## 📂 Repository Contents  
+- **ITC6000-2024-FALL-A - JAYESH - Zero Day Attack Detection.pdf**  
+  Detailed final project report including system architecture, ER modeling, SQL queries, analytics, security considerations, and future improvements.  
 
-🛠 Features
-Anomaly Detection – Monitors network traffic for suspicious activity.
+- **Jayesh_Final Project.sqbpro** *(SQLite Project File)*  
+  Complete SQLite database implementation with schema, sample data, and queries for threat detection and analysis.  
 
-Risk Assessment – Scores anomalies to prioritize response.
+- **ERD_Jayesh_Final Project_Airport Network Threat.drawio**  
+  Entity-Relationship Diagram illustrating database tables, attributes, and relationships.  
 
-Role-Based Access Control – Ensures data security and compliance.
+---
 
-Detailed Reporting & Visualization – Uses SQL queries and Python (Matplotlib) for analytics.
+## ⚙ Features  
+- **Anomaly Detection** – Monitors network traffic for suspicious activity.  
+- **Risk Assessment** – Scores anomalies to prioritize response.  
+- **Role-Based Access Control** – Ensures data security and compliance.  
+- **Detailed Reporting & Visualization** – Uses SQL queries and Python (Matplotlib) for analytics.  
+- **Hybrid Deployment Ready** – Supports both cloud and on-premise environments.  
 
-Hybrid Deployment Ready – Supports both cloud and on-premise environments.
+---
 
-📊 Dataset
-Source: Kaggle – Zero-Day Attack Detection in Logistics Networks
+## 📊 Dataset  
+Source: [Kaggle – Zero-Day Attack Detection in Logistics Networks](https://www.kaggle.com/datasets/datasetengineer/zero-day-attack-detection-in-logistics-networks)  
 
-📦 Technologies Used
-Database: SQLite
+---
 
-Visualization: Python (Matplotlib)
+## 🛠 Technologies Used  
+- **Database:** SQLite  
+- **Visualization:** Python (Matplotlib)  
+- **Modeling Tool:** diagrams.net (draw.io)  
+- **Cloud Integration:** AWS/Azure *(Proposed in architecture)*  
 
-Modeling Tool: diagrams.net (draw.io)
+---
 
-Cloud Integration: AWS/Azure (Proposed in architecture)
-
-📜 License
-This project is for academic purposes and is not intended for production deployment without further security hardening.
+## 📜 License  
+This project is for academic purposes and is not intended for production deployment without further security hardening.  
