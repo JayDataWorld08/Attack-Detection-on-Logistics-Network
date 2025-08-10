@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="Jayesh_Assignment 5 Final Project_Data Import.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1059"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Address" custom_title="0" dock_id="4" table="4,7:mainAddress"/><dock_state state="000000ff00000000fd0000000100000002000005bb000003c0fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000005bb0000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000000005bb0000011e00ffffff000005bb0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Address" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="74"/><column index="2" value="95"/><column index="3" value="95"/><column index="4" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">CREATE TABLE Address (
+    Address_ID INTEGER PRIMARY KEY,
+    SeedAddress TEXT,
+    ExpAddress TEXT,
+    IPAddress TEXT
+);
+
+CREATE TABLE Logistics (
+    Logistics_ID INTEGER PRIMARY KEY,
+    Geolocation TEXT,
+    NumberOfPackets INTEGER,
+    PayloadSize INTEGER
+);
+
+CREATE TABLE Network_Traffic (
+    Traffic_ID INTEGER PRIMARY KEY,
+    Time TIMESTAMP,
+    Protocol TEXT,
+    Flag TEXT,
+    ThreatLevel INTEGER,
+    AnomalyScore REAL,
+    ResponseTime INTEGER,
+    DataTransferRate INTEGER,
+    FK_Logistics_ID INTEGER,
+    FK_Address_ID INTEGER,
+    FOREIGN KEY (FK_Logistics_ID) REFERENCES Logistics(Logistics_ID),
+    FOREIGN KEY (FK_Address_ID) REFERENCES Address(Address_ID)
+);
+
+CREATE TABLE Session (
+    Session_ID INTEGER PRIMARY KEY,
+    FK_Traffic_ID INTEGER,
+    FOREIGN KEY (FK_Traffic_ID) REFERENCES Network_Traffic(Traffic_ID)
+);
+
+CREATE TABLE Network_Event (
+    EventDescription_ID INTEGER PRIMARY KEY,
+    UserAgent TEXT,
+    ErrorCode INTEGER,
+    FK_Traffic_ID INTEGER,
+    FOREIGN KEY (FK_Traffic_ID) REFERENCES Network_Traffic(Traffic_ID)
+);
+
+
+
+SELECT 
+    Time, Protocol, Flag, ThreatLevel, AnomalyScore, 
+    SeedAddress, ExpAddress, IPAddress,
+    Geolocation, PayloadSize, NumberofPackets
+FROM 
+    Network_Traffic nt
+JOIN 
+    Address addr ON Traffic_ID = Traffic_ID
+JOIN 
+    Logistics log ON nt.FK_Logistics_ID = Logistics_ID
+WHERE 
+    ThreatLevel &gt; 1 AND AnomalyScore &gt; 0.07
+	
+
+SELECT 
+    Time, ThreatLevel, EventDescription_ID, ErrorCode,
+    AnomalyScore, ResponseTime, Session_ID
+FROM 
+    Network_Traffic nt
+JOIN 
+    Network_Event ne ON Traffic_ID = Traffic_ID
+JOIN 
+    Session sess ON Traffic_ID = Traffic_ID
+WHERE 
+    AnomalyScore &gt; 0.9 OR ErrorCode IS NOT NULL;
+
+	
+	
+SELECT 
+    Time, Protocol, DataTransferRate, AnomalyScore, 
+    SeedAddress, ExpAddress, ThreatLevel
+FROM 
+    Network_Traffic nt
+JOIN 
+    Address addr ON Traffic_ID = Traffic_ID
+WHERE 
+    DataTransferRate &gt; 10.50 AND Protocol = 'TCP'
+ORDER BY 
+    AnomalyScore DESC;
+
+	
+	
+	
+SELECT 
+    Time, Protocol, DataTransferRate, ThreatLevel,
+    SeedAddress, ExpAddress, PayloadSize, NumberofPackets
+FROM 
+    Network_Traffic nt
+JOIN 
+    Address addr ON Traffic_ID = Traffic_ID
+JOIN 
+    Logistics log ON Logistics_ID = Logistics_ID
+WHERE 
+    nt.Protocol IN ('UDP', 'TCP') 
+    AND DataTransferRate &gt; 17.20
+    AND ThreatLevel &gt; 1;
+
+	
+	
+	
+SELECT
+	Logistics_id, Session, Time, Response_Time, Prediction, Anomaly_Score
+FROM
+	Network_Traffic
+WHERE
+	Anomaly Score &gt; 70 AND Prediction = 'Disruption'
+ORDER BY
+	Response_Time DESC;
+
+
+
+
+
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
